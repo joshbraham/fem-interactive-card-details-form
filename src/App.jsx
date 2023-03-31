@@ -1,6 +1,9 @@
+import { AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import Attribution from "./Attribution";
 import CardForm from "./CardForm";
 import Cards from "./Cards";
+import FormSuccess from "./FormSuccess";
 import useForm from "./utils/useForm";
 import { DIGITS, useNumberForm } from "./utils/useNumberForm";
 
@@ -74,6 +77,8 @@ function App() {
       monthError = blankError;
     } else if (expiryMonth.length !== 2) {
       monthError = "Must be 2 digits.";
+    } else if (parseInt(expiryMonth) > 12) {
+      monthError = "Invalid month. (01..12)";
     } else if (!expiryYear) {
       yearError = blankError;
     } else if (expiryYear.length !== 2) {
@@ -108,6 +113,10 @@ function App() {
     });
   };
 
+  const handleContinue = () => {
+    setSubmitted(false);
+  };
+
   const refs = {
     cardNameRef,
     cardNumberRef,
@@ -134,10 +143,28 @@ function App() {
     errors,
   };
 
+  const transition = {
+    initial: { opacity: 0, x: -100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 100 },
+  };
+
   return (
     <main className="grid-flow">
       <Cards {...cardProps} />
-      <CardForm {...cardFormProps} />
+      <div className="form-wrapper">
+        <AnimatePresence>
+          {submitted ? (
+            <FormSuccess
+              handleContinue={handleContinue}
+              transition={transition}
+            />
+          ) : (
+            <CardForm {...cardFormProps} transition={transition} />
+          )}
+        </AnimatePresence>
+      </div>
+      <Attribution />
     </main>
   );
 }

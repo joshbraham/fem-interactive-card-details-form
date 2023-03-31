@@ -18,7 +18,12 @@ export default function Cards({
       <div className="card card-front">
         <img className="card-front__bg" src={cardFront} alt="Front of card." />
         <div className="card-front__items">
-          <img className="card-logo" src={logo} alt="Card logo." />
+          <img
+            className="card-logo"
+            src={logo}
+            alt="Card logo"
+            draggable={false}
+          />
           <p>{cardNumber || "0000 0000 0000 0000"}</p>
           <p className="card__name-exp">
             <span>{formatName(cardName) || "Jane Appleseed"}</span>
@@ -29,7 +34,12 @@ export default function Cards({
         </div>
       </div>
       <div className="card card-back">
-        <img className="card-back__bg" src={cardBack} alt="Back of card."></img>
+        <img
+          className="card-back__bg"
+          src={cardBack}
+          alt="Back of card"
+          draggable={false}
+        ></img>
         <div className="card-back__items">
           <p className="card__cvc">{cvc || "000"}</p>
         </div>
