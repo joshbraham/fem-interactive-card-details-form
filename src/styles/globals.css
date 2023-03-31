@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+:root {
+  --clr-red: hsl(0, 100%, 66%);
+
+  --clr-neutral-100: white;
+  --clr-neutral-300: hsl(270, 3%, 87%);
+  --clr-neutral-500: hsl(279, 6%, 55%);
+  --clr-neutral-800: hsl(278, 68%, 30%);
+  --clr-neutral-900: hsl(278, 68%, 11%);
+
+  /* For the active input border */
+  --grad: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  --fs-small: 14px;
+}
+
+body {
+  background-color: #222;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 18px;
+}
+
+/* Layout */
+
+main.grid-flow {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  place-items: center;
+}
+
+/* COMPONENT: Cards */
+
+.Cards {
+  background: url("../assets/bg-main-desktop.png");
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card {
+  width: 375px;
+  aspect-ratio: 447 / 245;
+  border-radius: 10px;
+  color: var(--clr-neutral-100);
+  text-transform: uppercase;
+  position: absolute;
+}
+
+.card-front {
+  top: 110px;
+  right: -100px;
+}
+
+.card-back {
+  bottom: 110px;
+  right: -187px;
+}
+
+.card-front__items {
+  position: relative;
+  height: 100%;
+  padding: 20px 25px;
+  font-size: 24px;
+  letter-spacing: 0.0875em;
+  display: grid;
+  grid-template-rows: 1fr repeat(2, min-content);
+  gap: 25px;
+}
+
+.card-back__items {
+  position: relative;
+}
+
+.card-front__bg,
+.card-back__bg {
+  position: absolute;
+}
+
+.card-logo {
+  width: 60px;
+}
+
+.card__name-exp,
+.card__cvc {
+  font-size: var(--fs-small);
+  letter-spacing: 0.125em;
+}
+
+.card__name-exp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__cvc {
+  position: absolute;
+  top: 90px;
+  right: 50px;
+}
+
+/* COMPONENT: CardForm */
+
+.Card-form {
+  background-color: var(--clr-neutral-100);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.form-container {
+  display: grid;
+  grid-template:
+    "name name"
+    "number number"
+    "expiry cvc"
+    "submit submit";
+  row-gap: 20px;
+  column-gap: 5px;
+  width: 350px;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.125em;
+  margin-bottom: 10px;
+}
+
+input {
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--clr-neutral-300);
+  padding-left: 15px;
+}
+
+input::placeholder {
+  color: var(--clr-neutral-500);
+}
+
+input:not([id^="exp"]) {
+  width: 100%;
+}
+
+input[id^="exp"] {
+  --width: 48%;
+  width: var(--width);
+  margin-right: calc(50% - var(--width));
+}
+
+.invalid-input {
+  border: 2px solid var(--clr-red);
+}
+
+.invalid-msg {
+  color: var(--clr-red);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.form__name {
+  grid-area: name;
+}
+
+.form__number {
+  grid-area: number;
+}
+
+.form__exp {
+  grid-area: expiry;
+}
+
+.form__cvc {
+  grid-area: cvc;
+}
+
+.form__submit {
+  grid-area: submit;
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-neutral-900);
+  border: none;
+  border-radius: 8px;
+  transition: all 100ms ease-in;
+  cursor: pointer;
+}
+
+.form__submit:hover,
+.form__submit:focus {
+  background-color: var(--clr-neutral-800);
+}
+
+/* COMPONENT: Attribution */
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
