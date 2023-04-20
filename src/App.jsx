@@ -151,7 +151,7 @@ function App() {
 
   return (
     <main className="grid-flow" role="main">
-      <h1 hidden>Card Details Form</h1>
+      <h1 className="visually-hidden">Card Details Form</h1>
       <Cards {...cardProps} />
       <div className="form-wrapper">
         <AnimatePresence>
